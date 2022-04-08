@@ -1,12 +1,11 @@
 import fastify from "fastify";
+import { usersRoutes } from "../../../modules/users/infrastructure/http/routes";
 
 const server = fastify();
 
-server.get("/ping", async (request, reply) => {
-  return "pong\n";
-});
+server.register(usersRoutes, { prefix: "/users" });
 
-server.listen(8080, (err, address) => {
+server.listen(3000, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
