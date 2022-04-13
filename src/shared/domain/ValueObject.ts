@@ -5,7 +5,7 @@ interface ValueObjectProps {
 export abstract class ValueObject<T extends ValueObjectProps> {
   public properties: T;
 
-  constructor(properties: T) {
+  protected constructor(properties: T) {
     this.properties = {
       ...properties,
     };
