@@ -5,7 +5,10 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "nodemon"
+    "start": "cross-env NODE_ENV=development nodemon",
+    "migration:create": "npx sequelize-cli migration:generate --name",
+    "migration:run": "npx sequelize-cli db:migrate",
+    "migration:undo": "npx sequelize-cli db:migrate:undo"
   },
   "repository": {
     "type": "git",
@@ -27,12 +30,13 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2",
+    "sequelize-cli": "^6.4.1",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   },
   "dependencies": {
+    "dotenv": "^16.0.0",
     "fastify": "^3.27.4",
-    "nconf": "^0.11.3",
     "uuid": "^8.3.2"
   }
 }
