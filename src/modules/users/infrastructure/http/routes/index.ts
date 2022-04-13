@@ -13,5 +13,9 @@ export const usersRoutes = (
     reply.send("Me as user");
   });
 
+  fastify.post("/", async (request, reply) => {
+    reply.send("Create user");
+  });
+
   done();
 };
