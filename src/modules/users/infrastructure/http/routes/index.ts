@@ -4,6 +4,8 @@ import {
   HookHandlerDoneFunction,
 } from "fastify";
 
+import { createUserController } from "../../../useCases/createUser";
+
 export const usersRoutes = (
   fastify: FastifyInstance,
   options: FastifyPluginOptions,
@@ -14,7 +16,7 @@ export const usersRoutes = (
   });
 
   fastify.post("/", async (request, reply) => {
-    reply.send("Create user");
+    return createUserController.execute(request, reply);
   });
 
   done();
