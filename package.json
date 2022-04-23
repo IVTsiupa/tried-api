@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "API for Tried service",
   "main": "src/index.ts",
+  "config": {
+    "datasource": "src/shared/infrastructure/data/typeorm/data-source.ts",
+    "migrations": "src/shared/infrastructure/data/typeorm/migrations/"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "cross-env NODE_ENV=development nodemon",
-    "migration:create": "npx sequelize-cli migration:generate --name",
-    "migration:run": "npx sequelize-cli db:migrate",
-    "migration:undo": "npx sequelize-cli db:migrate:undo"
+    "migration:create": "cross-var npx typeorm migration:create $npm_package_config_migrations$npm_config_name",
+    "migration:run": "cross-var npx typeorm-ts-node-esm migration:run -d $npm_package_config_datasource",
+    "migration:revert": "cross-var npx typeorm-ts-node-esm migration:revert -d $npm_package_config_datasource"
   },
   "repository": {
     "type": "git",
@@ -25,6 +29,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "cross-env": "^7.0.3",
+    "cross-var-no-babel": "^1.2.0",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -37,6 +42,9 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "fastify": "^3.27.4",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6",
     "uuid": "^8.3.2"
   }
 }

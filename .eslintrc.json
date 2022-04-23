@@ -10,5 +10,5 @@
     "@typescript-eslint",
     "prettier"
   ],
-  "ignorePatterns": ["**/migrations/*.js", "**/config/*.js"]
+  "ignorePatterns": ["**/migrations/*.{js, ts}", "**/config/*.js"]
 }
